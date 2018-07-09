@@ -1,7 +1,9 @@
 const express=require('express');
 const router=express.Router();
-const gravatar = require('gravatar');
+const gravatar=require('gravatar');
 const bcrypt=require('bcryptjs');
+const jwt=require('jsonwebtoken');
+const keys=require('../../config/keys')
 
 const User=require('../../models/User')
 
@@ -10,10 +12,9 @@ const User=require('../../models/User')
 // @access  Public
 router.get('/test', (req,res) => res.json({msg: "users Works"}));
 
-// @route   GET api/users/register
-// @desc    Register a new user
+// @route   POST api/users/register
+// @desc    Registers a new user to the database
 // @access  Public
-
 router.post('/register', (req, res) => {
     User.findOne({email: req.body.email})
     .then(user => {
@@ -59,17 +60,24 @@ router.post('/login', (req, res) => {
         .then (user =>{
             // Check for user
             if (!user) {
-                return res.status(404).json({email: 'User not found'});
+                return res.status(404).json({email: 'User wasn\'t found'});
             }
         
         // Check the password
         bcrypt.compare(password, user.password)
             .then(match => {
                 if (match) {
-                    res.json({msg: 'Login Success'})
+
+                    const payload={id: user.id, name: user.name, avatar: user.avatar}
+                    jwt.sign(payload, keys.secretOrKey, {expiresIn: '1d'}, (err,token) => {
+                    res.json({
+                        success: true,
+                        token: 'Bearer '+token
+                    })
+                    })
                 }
                 else {
-                    return res.status(400).json({password: 'Password incorrect'});
+                    return res.status(400).json({password: 'Incorrect Password'});
                 }
             }) 
         })
