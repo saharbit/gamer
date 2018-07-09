@@ -1,7 +1,7 @@
 {
   "name": "gamer",
   "version": "1.0.0",
-  "description": "Gamers social network",
+  "description": "A social network for gamers",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
