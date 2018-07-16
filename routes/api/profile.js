@@ -28,5 +28,12 @@ router.get('/', passport.authenticate('jwt', {session: false}), (req,res) => {
         .catch(err => res.status(404).json(err))
 })
 
+// @route   GET api/profile
+// @desc    Get current users' profile
+// @access  Privatte
+router.post('/', passport.authenticate('jwt', {session: false}), (req,res) => {
+
+})
+
 
 module.exports=router;
