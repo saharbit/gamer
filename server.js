@@ -30,5 +30,5 @@ app.use("/api/posts", posts);
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
-  console.log("Port: " + port);
+  console.log(`Port is: ${port}`);
 });
