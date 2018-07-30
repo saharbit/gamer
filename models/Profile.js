@@ -15,8 +15,7 @@ const ProfileSchema = new Schema({
     type: String
   },
   favorite: {
-    type: String,
-    required: true
+    type: String
   },
   playing: {
     type: [String]
@@ -32,9 +31,6 @@ const ProfileSchema = new Schema({
       type: String
     },
     twitter: {
-      type: String
-    },
-    facebook: {
       type: String
     }
   },
