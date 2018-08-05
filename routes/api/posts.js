@@ -3,9 +3,11 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 
+// Import models
 const Post = require("../../models/Post");
 const Profile = require("../../models/Profile");
 
+// Import validation
 const validatePostInput = require("../../validation/post");
 
 // @route   GET api/posts/test

@@ -15,10 +15,13 @@ class Landing extends Component {
                   E-sports focused social network for gamers
                 </p>
                 <hr />
-                <Link to="/register" className="btn btn-lg btn-danger mr-2">
+                <Link
+                  to="/register"
+                  className="btn btn-lg btn-outline-danger mr-2"
+                >
                   Sign Up
                 </Link>
-                <Link to="/login" className="btn btn-lg btn-secondary">
+                <Link to="/login" className="btn btn-lg btn-outline-secondary">
                   Login
                 </Link>
               </div>
